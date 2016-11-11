@@ -1,15 +1,19 @@
+// @flow
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
 import {Provider} from 'react-redux'
-import configureStore from './configure-store'
+import {browserHistory} from 'react-router'
+import {syncHistoryWithStore} from 'react-router-redux'
+import configureStore from './store/configure-store'
+import AppRouter from './AppRouter'
 import './index.css'
 
 const store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppRouter history={history} />
   </Provider>,
   document.getElementById('root')
 )
